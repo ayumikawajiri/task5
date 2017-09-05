@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>商品:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>価格:</strong>
+  <%= @post.price %>
+</p>
+
+<p>
+  <strong>紹介:</strong>
+  <%= @post.body %>
+</p>
+
+<%= link_to '編集', edit_post_path(@post) %> |
+<%= link_to '戻る', posts_path %>
