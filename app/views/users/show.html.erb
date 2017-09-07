@@ -1,0 +1,18 @@
+<h1>出品した商品</h1>
+
+<div>
+	<%= @user.posts.count %>件の商品
+</div>
+
+<div>
+	<% @user.posts.reverse_each do |post| %>
+		<div>
+	    	<% if post.image? %>
+        	  <td><%= post_tag post.image.url %></td>
+        	<% else %>
+        	  <td>No Image</td>
+        	<% end %>
+    	</div>
+		<p><%= link_to post.title, post_path(post) %></p>
+	<% end %>
+</div>

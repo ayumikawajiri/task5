@@ -55,5 +55,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'seed-fu'
-
-gem 'kaminari'
+gem 'kaminari'#ページング
+gem 'carrierwave'
+gem 'rmagick'
