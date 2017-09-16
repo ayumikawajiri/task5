@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>めがねうりば</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+	   <header class="clearfix">
+      <div class="left logo-size">
+        <p class="logo">めがねうりば</p>
+      </div>
+		  <% if user_signed_in? %>
+        <div class="right menu">
+          <ul class="clearfix">
+            <li class="left list">
+              <%= current_user.username %>さん　ログイン中 | 
+            </li>
+            <li class="left list">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> | 
+            </li>
+            <li class="left list">
+              <%= link_to "トップページ", posts_path %> | 
+            </li>
+            <li class="left list">
+              <%= link_to "マイページ", user_path(current_user) %> | 
+            </li>
+            <li class="left list">
+              <%= link_to '出品する', new_post_path %> | 
+            </li>
+            <% if current_user.admin? %>
+              <li class="left list">
+                <%= link_to "ユーザー一覧", users_path %> | 
+              </li>
+              <li class="left list">
+                <%= link_to "新規ユーザー登録", new_user_registration_path %> 
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% else %>
+        <div class="right menu">
+          <div class="clearfix">
+            <ul class="clearfix right">
+              <li class="left list">
+                <%= link_to "ログイン", new_user_session_path %> | 
+              </li>
+              <li class="left list">
+                <%= link_to "トップページ", posts_path %> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </header>
+    <div class="yield">
+      <%= yield %>
+    </div>
+  </body>
+</html>

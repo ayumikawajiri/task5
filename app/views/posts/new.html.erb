@@ -1,0 +1,18 @@
+
+<div class="body">
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">出品する</h1>
+
+  <div class="section">
+	<div class="form"><%= render 'form', post: @post %></div>
+
+	<div class="clearfix">
+  	  <div class="navigate right">
+		<%= link_to '戻る', posts_path %>
+	  </div>
+	</div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="body">
+
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">アカウントの編集</h1>
+
+  <div class="section">
+    <div class="section-container">
+      <div class="form">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    
+          <p><%= devise_error_messages! %></p>
+
+          <div class="field">
+            <%= f.label "ユーザーネーム" %>
+            <%= f.text_field :username, :size=>"65x1", autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label "メールアドレス" %>
+            <%= f.email_field :email, :size=>"65x1", autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label "パスワード(変更する場合のみ入力)" %>
+            <%= f.password_field :password, :size=>"65x2", autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label "パスワードの確認" %>
+            <%= f.password_field :password_confirmation, :size=>"65x1", autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label "現在のパスワード(変更の反映に必要です)" %>
+            <%= f.password_field :current_password, :size=>"65x1", autocomplete: "off" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "変更する" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <h3 class="h3-text">アカウントの削除</h3>
+
+    <div class="section-container">
+      <div class="navigate clearfix">
+        <div class="button">
+          <%= button_to "削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか?" }, method: :delete %>
+        </div>
+        <div class="right">
+          <%= link_to "戻る", :back %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

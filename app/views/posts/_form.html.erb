@@ -1,0 +1,48 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %>件のエラーが出ています。</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "商品名" %>
+    <%= form.text_field :title, :size=>"65x1", id: :post_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label "イメージ" %>
+    <%= form.attachment_field :post_images_images, multiple: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label "イメージ2" %>
+    <%= form.attachment_field :post_images_images, multiple: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label "イメージ3" %>
+    <%= form.attachment_field :post_images_images, multiple: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label "価格" %>
+    <%= form.number_field :price, :size=>"65x1", id: :post_price %>
+  </div>
+
+  <div>
+    <%= form.label "紹介" %>
+    <%= form.text_area :body, :size=>"65x10", id: :post_body %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "出品する" %>
+  </div>
+<% end %>

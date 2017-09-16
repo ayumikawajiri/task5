@@ -1,0 +1,19 @@
+
+<div class="body">
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">商品詳細の編集</h1>
+
+  <div class="section">
+	<div class="form"><%= render 'form', post: @post %></div>
+
+ 	<div class="navigate clearfix">
+	  <div class="right">
+		<%= link_to '詳細画面に戻る', @post %> |
+		<%= link_to '一覧に戻る', posts_path %>
+	  </div>
+	</div>
+  </div>
+</div>

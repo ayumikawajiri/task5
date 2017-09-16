@@ -1,0 +1,40 @@
+<div class="body">
+  <p id="notice"><%= notice %></p>
+
+  <h1 class="h1-text">商品一覧</h1>
+
+  <div class="index_section">
+    <div class="index_section_page clearfix">
+      <div class="right clearfix">
+        <div class="left"><%= paginate(@posts) %></div>
+        <div class="left"> | <%= page_entries_info(@posts) %></div>
+      </div>
+    </div>
+    <div class="index_section_posts clearfix">
+      <% @posts.reverse_each do |post| %>
+        <div class="left index_post_box">
+          <% if post.post_images.present? %>
+            <div class="post_image">
+              <% post.post_images.each do |image| %>
+                <%= attachment_image_tag image, :image, :fill, 150, 150 %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="post_image">
+              <%= image_tag 'l_e_others_501.png', size: '150x150' %>
+            </div>
+          <% end %>
+          <div class="clearfix post_text">
+            <div class="left post_title">
+              <%= link_to post.title, post_path(post) %>
+            </div>
+            <div class="right post_price" >
+              <%= number_to_currency(post.price, :precision => 0, :unit => '¥') %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <div class="index_section_page"><%= paginate(@posts) %></div>
+</div>
+

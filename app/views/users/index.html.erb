@@ -1,0 +1,28 @@
+<div class="body">
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">ユーザー一覧</h1>
+
+  <div class="section">
+	<table class="user_table">
+  	  <thead>
+  		<tr>
+	  	  <th width="30%">ユーザーネーム</th>
+	  	  <th width="40%">メールアドレス</th>
+	  	  <th width="30%">アカウント作成日</th>
+		</tr>
+  	  </thead>
+  	  <tbody>
+		<% @users.each do |user| %>
+	  	  <tr>
+	    	<td height="30px" align="center"><%= link_to user.username, "/users/#{user.id}" %></td>
+	    	<td height="30px" align="center"><%= user.email %></td>
+	    	<td height="30px" align="center"><%= user.created_at.strftime("%Y/%m/%d") %></td>
+	  	  </tr>
+		<% end %>
+  	  </tbody>
+	</table>
+  </div>
+</div>
