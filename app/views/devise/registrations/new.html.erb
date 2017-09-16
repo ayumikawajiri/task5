@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="body">
   <div class="breadcrumbs" >
     <%= render_breadcrumbs separator: ' > ' %>
@@ -40,3 +41,34 @@
     </div>
   </div>
 </div>
+=======
+<h2>アカウント登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "パスワード" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "パスワードの確認" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録する" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4

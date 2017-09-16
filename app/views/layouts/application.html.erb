@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     <title>めがねうりば</title>
+=======
+    <title>Task5</title>
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +13,7 @@
   </head>
 
   <body>
+<<<<<<< HEAD
 	   <header class="clearfix">
       <div class="left logo-size">
         <p class="logo">めがねうりば</p>
@@ -59,5 +64,23 @@
     <div class="yield">
       <%= yield %>
     </div>
+=======
+	<header>
+		<% if user_signed_in? %>
+      		Logged in as <%= current_user.username %>
+      		<%= link_to "ログアウト", destroy_user_session_path, method: :delete %> |
+          <%= link_to "トップページ", posts_path %> |
+          <%= link_to "マイページ", user_path(current_user) %> |
+          <%= link_to '出品する', new_post_path %> |
+          <%= link_to "新規ユーザー登録", new_user_registration_path %> |
+
+    	<% else %>
+      		<%= link_to "ログイン", new_user_session_path %> |
+          <%= link_to "トップページ", posts_path %>
+    <% end %>
+  </header>
+
+    <%= yield %>
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
   </body>
 </html>

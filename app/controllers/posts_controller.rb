@@ -2,31 +2,47 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
 
+<<<<<<< HEAD
   add_breadcrumb "商品"
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.page(params[:page]).includes(:post_images)
+=======
+  # GET /posts
+  # GET /posts.json
+  def index
+    @posts = Post.page(params[:page])
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+<<<<<<< HEAD
     add_breadcrumb @post.title, :post_path
+=======
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+<<<<<<< HEAD
     @post.post_images.build
     add_breadcrumb '出品', :new_post_path
+=======
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
   end
 
   # GET /posts/1/edit
   def edit
+<<<<<<< HEAD
     add_breadcrumb @post.title, :post_path
     add_breadcrumb '商品情報の編集', :edit_post_path
+=======
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
   end
 
   # POST /posts
@@ -78,6 +94,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
+<<<<<<< HEAD
       params.require(:post).permit(:title, :price, :body, post_images_images: [])
     end
     def correct_user
@@ -87,6 +104,14 @@ class PostsController < ApplicationController
         if current_user.id != post.user.id
           redirect_to new_user_session_path
         end
+=======
+      params.require(:post).permit(:title, :price, :body, :image)
+    end
+    def correct_user
+      post = Post.find(params[:id])
+      if current_user.id != post.user.id
+        redirect_to new_user_session_path
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
       end
     end
 end

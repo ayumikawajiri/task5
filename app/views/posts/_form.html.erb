@@ -13,6 +13,7 @@
 
   <div class="field">
     <%= form.label "商品名" %>
+<<<<<<< HEAD
     <%= form.text_field :title, :size=>"65x1", id: :post_title %>
   </div>
 
@@ -42,6 +43,26 @@
   </div>
 
 
+=======
+    <%= form.text_field :title, id: :post_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label "価格" %>
+    <%= form.number_field :price, id: :post_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label "紹介" %>
+    <%= form.text_area :body, id: :post_body %>
+  </div>
+
+  <div>
+    <%= form.label "商品イメージ" %>
+    <%= form.file_field :image %>
+  </div>
+
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
   <div class="actions">
     <%= form.submit "出品する" %>
   </div>

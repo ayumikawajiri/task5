@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
 
 body{
 	margin: 0;
@@ -210,3 +211,5 @@ header{
 
 
 
+=======
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4

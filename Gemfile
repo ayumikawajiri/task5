@@ -56,6 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'seed-fu'
 gem 'kaminari'#ページング
+<<<<<<< HEAD
 
 gem 'bullet', group: :development
 
@@ -64,3 +65,7 @@ gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
 gem 'breadcrumbs_on_rails'
 
 gem 'pry-rails'
+=======
+gem 'carrierwave'
+gem 'rmagick'
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4

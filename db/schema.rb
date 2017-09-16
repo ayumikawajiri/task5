@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170914120140) do
 
   create_table "post_images", force: :cascade do |t|
@@ -19,6 +20,9 @@ ActiveRecord::Schema.define(version: 20170914120140) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_images_on_post_id"
   end
+=======
+ActiveRecord::Schema.define(version: 20170905125337) do
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -44,8 +48,11 @@ ActiveRecord::Schema.define(version: 20170914120140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+<<<<<<< HEAD
     t.boolean "admin", default: false
     t.integer "user_id"
+=======
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

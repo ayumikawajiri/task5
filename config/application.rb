@@ -15,5 +15,8 @@ module Task5
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
+<<<<<<< HEAD
 
+=======
+>>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
 end
