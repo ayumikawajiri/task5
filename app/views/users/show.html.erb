@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <div class="body">
   <div class="breadcrumbs" >
     <%= render_breadcrumbs separator: ' > ' %>
@@ -79,23 +79,4 @@
       </div>
     </div>
   </div>
-=======
-<h1>出品した商品</h1>
-
-<div>
-	<%= @user.posts.count %>件の商品
-</div>
-
-<div>
-	<% @user.posts.reverse_each do |post| %>
-		<div>
-	    	<% if post.image? %>
-        	  <td><%= post_tag post.image.url %></td>
-        	<% else %>
-        	  <td>No Image</td>
-        	<% end %>
-    	</div>
-		<p><%= link_to post.title, post_path(post) %></p>
-	<% end %>
->>>>>>> e5de3266dfaed05c7acf7cc7be1b9c78a201aaa4
 </div>
