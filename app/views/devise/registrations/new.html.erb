@@ -16,6 +16,11 @@
           <%= f.text_field :username, :size=>"65x1", autofocus: true %>
         </div>
 
+        <% if @noadmin %>
+          <div><%= f.label :admin %><br />
+          <%= f.check_box :admin, { }, true, false %></div>
+        <% end %>
+
         <div class="field">
           <%= f.label "メールアドレス" %>
           <%= f.email_field :email, :size=>"65x1", autofocus: true %>
