@@ -1,0 +1,15 @@
+===============================
+<%= @order.user.username %>様
+===============================
+
+この度はメガネうりばを利用頂きましてありがとうございます。
+
+ご注文内容
+
+商品名: <%= @order.post.title %>
+価格: <%= number_to_currency(@order.post.price, :precision => 0, :unit => '¥') %>
+ご購入者様氏名: <%= @order.ordername %>
+ご連絡先: <%= @order.orderphone %>
+送付先ご住所: <%= @order.orderaddress %>
+
+今後ともメガネうりばをどうぞ宜しくお願いいたします。

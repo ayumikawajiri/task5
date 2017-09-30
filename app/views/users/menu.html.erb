@@ -1,0 +1,15 @@
+<div class="body">
+	<div class="breadcrumbs" >
+    	<%= render_breadcrumbs separator: ' > ' %>
+	</div>
+	<h1 class="h1-text">管理者用メニュー一覧</h1>
+
+	<div class="section">
+		<div class="adminmenu"><%= link_to '出品する', new_post_path %></div>
+		<div class="adminmenu"><%= link_to '全購入履歴', orders_path %></div>
+		<div class="adminmenu"><%= link_to 'ユーザー一覧', users_path %></div>
+		<div class="adminmenu"><%= link_to '新規ユーザー登録', new_user_registration_path %></div>
+		<div class="adminmenu"><%= link_to 'カテゴリ一覧', categories_path %></div>
+		<div class="adminmenu"><%= link_to 'カテゴリ作成', new_category_path %></div>
+	</div>
+</div>

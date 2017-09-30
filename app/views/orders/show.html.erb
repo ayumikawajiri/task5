@@ -1,0 +1,66 @@
+<div class="body">
+
+  <p id="notice"><%= notice %></p>
+
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">購入者情報</h1>
+
+  <div class="index_section">
+    <div class="order-box clearfix">
+      <div class="post-order-image clearfix">
+        <% if @order.post.post_images.present? %>
+          <% @order.post.post_images.each do |image| %>
+            <div class="left image">
+              <%= attachment_image_tag image, :image, :fill, 150, 150 %>
+            </div>
+          <% end %>
+        <% else %>
+          <div><%= image_tag 'l_e_others_501.png', size: '150x150' %></div>
+        <% end %>
+      </div>
+      <div class="order-info">
+        <p>
+          <strong>商品名:</strong>
+          <%= link_to @order.post.title, post_path %>
+        </p>
+        
+        <p>
+          <strong>注文者:</strong>
+          <%= link_to @order.user.username, user_path(@order.user) %>
+        </p>
+        
+        <p>
+          <strong>購入者氏名:</strong>
+          <%= @order.ordername %>
+        </p>
+        
+        <p>
+          <strong>連絡先:</strong>
+          <%= @order.orderphone %>
+        </p>
+        
+        <p>
+          <strong>メールアドレス:</strong>
+          <%= @order.orderemail %>
+        </p>
+        
+        <p>
+          <strong>送付先住所:</strong>
+          <%= @order.orderaddress %>
+        </p>
+        <div class="clearfix">
+          <div class="navigate right">
+            <br>
+            <% if current_user.admin? %>
+              <%= link_to '編集', edit_post_order_path(@order) %> | 
+            <% end %>
+            <%= link_to '戻る', post_path(@order.post_id) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

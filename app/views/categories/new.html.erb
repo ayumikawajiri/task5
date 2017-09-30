@@ -1,0 +1,20 @@
+<div class="body">
+
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">カテゴリ作成</h1>
+
+  <div class="section">
+  	<div class="form">
+	  <%= render 'form', category: @category %>
+	</div>
+    <div class="clearfix">
+      <div class="navigate right">
+	    <%= link_to '戻る', categories_path %>
+	  </div>
+    </div>
+  </div>
+</div>
+

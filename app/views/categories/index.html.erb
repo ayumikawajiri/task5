@@ -1,0 +1,45 @@
+<div class="body">
+
+  <p id="notice"><%= notice %></p>
+
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">カテゴリ一覧</h1>
+
+  <div class="section">
+    <div class="index_section_page clearfix">
+      <div class="right clearfix">
+        <div class="left"><%= paginate(@categories) %></div>
+        <div class="left"> | <%= page_entries_info(@categories) %></div>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= link_to category.categoryname, category_path(category) %></td>
+            <td><%= link_to '編集', edit_category_path(category) %></td>
+            <td><%= link_to '削除', category, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+    <div class="clearfix">
+      <div class="navigate right">
+        <%= link_to 'カテゴリ作成', new_category_path %>
+      </div>
+    </div>
+  </div>
+</div>
+

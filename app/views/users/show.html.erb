@@ -1,37 +1,36 @@
 
 <div class="body">
+  <p id="notice"><%= notice %></p>
   <div class="breadcrumbs" >
     <%= render_breadcrumbs separator: ' > ' %>
   </div>
 
-  <% if current_user.id == @user.id  %>
+  <% if user_signed_in? && current_user.id == @user.id  %>
   	<h1 class="h1-text">マイページ</h1>
   <% else %>
-  	<% if current_user.admin? %>
-		  <h1 class="h1-text"><%= @user.username %>さんの情報</h1>
-	  <% end %>
+		<h1 class="h1-text"><%= @user.username %>さんのページ</h1>
   <% end %>
 
   <div class="index_section">
-    <% if current_user.admin? || current_user.id == @user.id %>
-	    <div class="section-container">
-		    <table class="user_table">
-  	  	  <thead>
-  			    <tr>
-	  	  	    <th width="30%">ユーザーネーム</th>
-	  	  	    <th width="40%">メールアドレス</th>
-	  	  	    <th width="30%">アカウント作成日</th>
-			      </tr>
-  	  	  </thead>
-  	  	  <tbody>
-			      <tr>
-	  	  	    <td align="center"><%= @user.username %></td>
-	  	  	    <td align="center"><%= @user.email %></td>
-	  	  	    <td align="center"><%= @user.created_at.strftime("%Y/%m/%d") %></td>
-			      </tr>
-  	  	  </tbody>
-		    </table>
-        <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <% if current_user.admin? || current_user.id == @user.id %>
+	      <div class="section-container">
+		      <table class="user_table">
+  	    	  <thead>
+  			      <tr>
+	  	  	      <th width="30%">ユーザーネーム</th>
+	  	  	      <th width="40%">メールアドレス</th>
+	  	  	      <th width="30%">アカウント作成日</th>
+  			      </tr>
+    	  	  </thead>
+  	    	  <tbody>
+			        <tr>
+	  	    	    <td align="center"><%= @user.username %></td>
+	  	  	      <td align="center"><%= @user.email %></td>
+	  	  	      <td align="center"><%= @user.created_at.strftime("%Y/%m/%d") %></td>
+			        </tr>
+  	  	    </tbody>
+		      </table>
           <% if current_user.id == @user.id %>
             <div class="navigate clearfix">
               <div class="right">
@@ -39,17 +38,60 @@
               </div>
             </div>
           <% end %>
-        <% end %>
-  	  </div>
-    <% end %>
+        </div>
+        <div class="line"></div>
+      <% end %>
 
-    <div class="line"></div>
+      <div class="clearfix">
+        <% if current_user.admin? %>
+          <div class="navigate clearfix">
+            <h4 class="right"><%= link_to '全購入履歴一覧を見る', orders_path %></h4>
+          </div>
+        <% end %>
+        <% if current_user.id == @user.id %>
+          <h3 class="h3-text">あなたの購入履歴</h3>
+        <% else %>
+          <% if current_user.admin? %>
+            <h3 class="h3-text"><%= @user.username %>さんの購入履歴</h3>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if current_user.admin? || current_user.id == @user.id %>
+        <div class="section-container">
+          <% if @user.orders.count == 0 %>
+            <div class="text-center">注文履歴はありません</div>
+          <% else %>
+            <table class="table" rules="rows">
+              <thead>
+                <th width="20%">注文ID</th>
+                <th width="30%">商品名</th>
+                <th width="20%">価格</th>
+                <th width="30%">購入日</th>
+              </thead>
+  
+              <% @orders.reverse_each do |order| %>
+                <tbody>
+                  <td height="30" align="center"><%= link_to order.id, order_path(order.id) %></td>
+                  <td align="center"><%= link_to order.post.title, post_path(order.post_id) %></td>
+                  <td align="center"><%= number_to_currency(order.post.price, :precision => 0, :unit => '¥') %></td>
+                  <td align="center"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+                </tbody>
+              <% end %>
+            </table>
+          <% end %>
+        </div>
+        <div class="line"></div>
+      <% end %>
+    <% end %>
   
     <div class="section-container">
-      <% if current_user.id == @user.id %>
-	      <h3 class="h3-text">あなたが出品した作品<small>(<%= @posts.count %>件)</small></h3>
+      <% if user_signed_in? && current_user.admin? && current_user.id == @user.id %>
+	       <h3 class="h3-text">あなたが出品した作品<small>(<%= @posts.count %>件)</small></h3>
       <% else %>
-	      <h3 class="h3-text"><%= @user.username %>さんが出品した商品<small>(<%= @posts.count %>件)</small></h3>
+        <% if @user.admin? %>
+	        <h3 class="h3-text"><%= @user.username %>さんが出品した商品<small>(<%= @posts.count %>件)</small></h3>
+        <% end %>
       <% end %>
 
       <div class="index_section_posts clearfix">
@@ -57,9 +99,7 @@
           <div class="left index_post_box">
             <% if post.post_images.present? %>
               <div class="post_image">
-                <% post.post_images.each do |image| %>
-                  <%= attachment_image_tag image, :image, :fill, 150, 150 %>
-                <% end %>
+                <%= attachment_image_tag @image, :image, :fill, 150, 150 %>
               </div>
             <% else %>
               <div class="post_image">

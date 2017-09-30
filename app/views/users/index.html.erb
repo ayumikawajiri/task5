@@ -10,9 +10,10 @@
 	<table class="user_table">
   	  <thead>
   		<tr>
-	  	  <th width="30%">ユーザーネーム</th>
-	  	  <th width="40%">メールアドレス</th>
-	  	  <th width="30%">アカウント作成日</th>
+	  	  <th width="20%">ユーザー<br>ネーム</th>
+	  	  <th width="30%">メール<br>アドレス</th>
+	  	  <th width="30%">アカウント<br>作成日</th>
+	  	  <th width="20%">ステータス</th>
 		</tr>
   	  </thead>
   	  <tbody>
@@ -21,6 +22,11 @@
 	    	<td height="30px" align="center"><%= link_to user.username, "/users/#{user.id}" %></td>
 	    	<td height="30px" align="center"><%= user.email %></td>
 	    	<td height="30px" align="center"><%= user.created_at.strftime("%Y/%m/%d") %></td>
+	    	<% if user.admin? %>
+	    	  <td height="30px" align="center">管理者</td>
+	    	<% else %>
+	    	  <td height="30px" align="center">ユーザー</td>
+	    	<% end %>
 	  	  </tr>
 		<% end %>
   	  </tbody>

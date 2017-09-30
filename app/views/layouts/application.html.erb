@@ -15,7 +15,8 @@
       </div>
 		  <% if user_signed_in? %>
         <div class="right menu">
-          <ul class="clearfix">
+          <div class="clearfix">
+            <ul class="right clearfix">
             <li class="left list">
               <%= current_user.username %>さん　ログイン中 | 
             </li>
@@ -28,28 +29,26 @@
             <li class="left list">
               <%= link_to "マイページ", user_path(current_user) %> | 
             </li>
-            <li class="left list">
-              <%= link_to '出品する', new_post_path %> | 
-            </li>
             <% if current_user.admin? %>
               <li class="left list">
-                <%= link_to "ユーザー一覧", users_path %> | 
-              </li>
-              <li class="left list">
-                <%= link_to "新規ユーザー登録", new_user_registration_path %> 
+                <%= link_to "管理者メニュー", menu_path %> |
               </li>
             <% end %>
-          </ul>
+            </ul>
+          </div>
         </div>
       <% else %>
         <div class="right menu">
           <div class="clearfix">
-            <ul class="clearfix right">
+            <ul class="right clearfix">
               <li class="left list">
                 <%= link_to "ログイン", new_user_session_path %> | 
               </li>
               <li class="left list">
-                <%= link_to "トップページ", posts_path %> 
+                <%= link_to "新規ユーザー登録", new_user_registration_path %> |
+              </li>
+              <li class="left list">
+                <%= link_to "トップページ", posts_path %> |
               </li>
             </ul>
           </div>

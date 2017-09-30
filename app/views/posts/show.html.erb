@@ -10,23 +10,38 @@
 
   <div class="section">
     <div class="post-box">
-      <div class="clearfix image-box">
-        <div class="left image">
-          <% if @post.post_images.present? %>
-            <% @post.post_images.each do |image| %>
+      <div class="image-box clearfix">
+        <% if @post.post_images.present? %>
+          <% @post.post_images.each do |image| %>
+            <div class="image left">
               <%= attachment_image_tag image, :image, :fill, 150, 150 %>
-            <% end %>
-          <% else %>
-            <div><%= image_tag 'l_e_others_501.png', size: '150x150' %></div>
+            </div>
           <% end %>
+        <% else %>
+          <div class="image left">
+            <%= image_tag 'l_e_others_501.png', size: '150x150' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-box">
+        <div class="clearfix">
+          <div class="left text">
+            <p><%= @post.title %></p>
+            <p><%= number_to_currency(@post.price, :precision => 0, :unit => '¥') %></p>
+          </div>
+          <div class="left text">
+            <p>出品者:<%= link_to @post.user.username, user_path(@post.user) %></p>
+            <p>カテゴリ:<%= link_to @post.category.categoryname, category_path(@post.category) %></p>
+          </div>
         </div>
-        <div class="left text">
-          <p><%= @post.title %></p>
-          <p><%= number_to_currency(@post.price, :precision => 0, :unit => '¥') %></p>
-          <p>出品者:<%= link_to @post.user.username, user_path(@post.user) %></p>
+        <div class="content">
+          <%= simple_format(@post.body) %>
         </div>
       </div>
-      <p class="content"><%= @post.body %></p>
+    </div>
+
+    <div class="button">
+      <%= button_to 'この商品を注文する', new_post_order_path(@post), method: :get %>
     </div>
 
     <div class="clearfix">
@@ -34,7 +49,7 @@
         <% if user_signed_in? %>
 	        <% if current_user.admin? || current_user.id == @post.user_id %>
 	 	        <%= link_to '編集', edit_post_path(@post) %> | 
-		        <%= link_to '削除', @post, method: :delete, data: { confirm: '  本当に削除しますか?' } %> | 
+		        <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか?' } %> | 
 	        <% end %>
         <% end %>
         <%= link_to '戻る', posts_path %>

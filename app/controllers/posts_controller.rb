@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.page(params[:page]).includes(:post_images)
-
+    @image = PostImage.first
   end
 
   # GET /posts/1
@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.post_images.build
+    add_breadcrumb '管理者メニュー', :menu_path
     add_breadcrumb '出品', :new_post_path
   end
 
@@ -79,7 +80,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :price, :body, post_images_images: [])
+      params.require(:post).permit(:title, :price, :body, :category_id, post_images_images: [])
     end
     def correct_user
       post = Post.find(params[:id])
@@ -88,7 +89,6 @@ class PostsController < ApplicationController
         if current_user.id != post.user.id
           redirect_to new_user_session_path
         end
-
       end
     end
 end

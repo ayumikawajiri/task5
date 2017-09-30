@@ -1,0 +1,25 @@
+
+<div class="body">
+
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">注文者情報</h1>
+
+  <div class="section">
+	<div class="form">
+		<div>
+			購入する商品:<%= link_to @post.title, post_path(@post.id) %>
+			<%= number_to_currency(@post.price, :precision => 0, :unit => '¥') %>
+		</div><br>
+		<div><%= render 'form', order: @order %></div>
+	</div>
+
+	<div class="clearfix">
+	  <div class="navigate right">
+	    <%= link_to '戻る', post_path(@post.id) %>
+	  </div>
+	</div>
+  </div>
+</div>

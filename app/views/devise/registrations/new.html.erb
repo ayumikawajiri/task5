@@ -16,10 +16,16 @@
           <%= f.text_field :username, :size=>"65x1", autofocus: true %>
         </div>
 
-        <% if @noadmin %>
-          <div><%= f.label :admin %><br />
-          <%= f.check_box :admin, { }, true, false %></div>
-        <% end %>
+        <div>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <div class="field clearfix">
+                <p class="left"><%= f.check_box :admin, { }, true, false %></p>
+                <p class="left"><%= f.label "管理者として登録する" %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
 
         <div class="field">
           <%= f.label "メールアドレス" %>
@@ -36,7 +42,7 @@
           <%= f.password_field :password_confirmation, :size=>"65x1", autocomplete: "off" %>
         </div>
 
-        <div class="actions">
+        <div class="actions button">
           <%= f.submit "登録する" %>
         </div>
       <% end %>

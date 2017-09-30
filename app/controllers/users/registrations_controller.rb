@@ -1,16 +1,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-    before_action :require_no_authentication, :only => [ :cancel]
-    before_action :authenticate_scope!, :only => [:new, :create ,:edit, :update, :destroy]
+    before_action :require_no_authentication, :only => [:cancel]
+  #  before_action :authenticate_scope!, :only => [:new, :create ,:edit, :update, :destroy]
     
     add_breadcrumb "アカウント管理"
-    # add_breadcrumb "アカウント登録", :new_user_registration_path
-    # add_breadcrumb "アカウントの編集", :edit_user_registration_path
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
+    add_breadcrumb '管理者メニュー', :menu_path
     add_breadcrumb "アカウント登録", :new_user_registration_path
     super
   end
@@ -45,7 +44,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+   protected
+
+  def after_sign_up_path_for(resource)
+    user_path(resource)
+  end
+
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

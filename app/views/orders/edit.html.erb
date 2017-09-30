@@ -1,0 +1,17 @@
+<div class="body">
+
+  <div class="breadcrumbs" >
+    <%= render_breadcrumbs separator: ' > ' %>
+  </div>
+
+  <h1 class="h1-text">購入者情報の編集</h1>
+
+  <div class="section">
+  	<div class="form"><%= render 'form', order: @order %></div>
+  	<div class="navigate clearfix">
+  	  <div class="right">
+  		<%= link_to '戻る', @order %>
+  	  </div>
+  	</div>
+  </div>
+</div>

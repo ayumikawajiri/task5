@@ -16,9 +16,7 @@
         <div class="left index_post_box">
           <% if post.post_images.present? %>
             <div class="post_image">
-              <% post.post_images.each do |image| %>
-                <%= attachment_image_tag image, :image, :fill, 150, 150 %>
-              <% end %>
+              <%= attachment_image_tag @image, :image, :fill, 150, 150 %>
             </div>
           <% else %>
             <div class="post_image">
@@ -37,4 +35,5 @@
       <% end %>
     </div>
   <div class="index_section_page"><%= paginate(@posts) %></div>
+  </div>
 </div>

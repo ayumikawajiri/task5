@@ -36,12 +36,17 @@
     <%= form.number_field :price, :size=>"65x1", id: :post_price %>
   </div>
 
-  <div>
+  <div class="area">
     <%= form.label "紹介" %>
     <%= form.text_area :body, :size=>"65x10", id: :post_body %>
   </div>
 
-  <div class="actions">
+  <div class="field">
+    <%= form.label "カテゴリ" %>
+    <%= form.collection_select :category_id, Category.all, :id, :categoryname %>
+  </div>
+
+  <div class="actions button">
     <%= form.submit "出品する" %>
   </div>
 <% end %>
